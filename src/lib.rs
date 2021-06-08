@@ -1,10 +1,6 @@
-use std::{fs, process, error::Error};
+use std::{fs, error::Error};
 
 pub fn read_file(file_path: String) -> Result<String, Box<dyn Error>> {
-    if !file_path.ends_with(".bf") {
-        println!("The file extension has to be '.bf'");
-        process::exit(1);
-    }
     let contents = fs::read_to_string(file_path)?;
     Ok(contents)
 }
@@ -41,9 +37,6 @@ pub fn interpret(contents: String) {
             let mut input = String::new();
             std::io::stdin().read_line(&mut input).expect("Unable to read line.");
             cells[i] = input.as_bytes()[0];
-        }
-        else if c == '[' {
-            
         }
         else if c == ']' && cells[i] != 0 {
             let mut loop_count = 1;
