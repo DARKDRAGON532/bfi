@@ -54,5 +54,4 @@ pub fn interpret(contents: String) {
 
         chars_index += 1;
     }
-
 }

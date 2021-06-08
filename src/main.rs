@@ -7,7 +7,10 @@ fn main() {
         process::exit(1);
     }
 
-    let contents = bfi::read_file(args[1].clone()).expect("Error reading file.");
+    let contents = bfi::read_file(args[1].clone()).unwrap_or_else(|err| {
+        eprintln!("Application error : {}", err);
+        process::exit(1);
+    });
 
     bfi::interpret(contents);
 
