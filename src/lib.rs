@@ -38,6 +38,19 @@ pub fn interpret(contents: String) {
             std::io::stdin().read_line(&mut input).expect("Unable to read line.");
             cells[i] = input.as_bytes()[0];
         }
+        else if c == '[' && cells[i] == 0 {
+            let mut loop_count = 1;
+            while loop_count > 0 {
+                chars_index += 1;
+                let current_char = chars[chars_index];
+                if current_char == ']' {
+                    loop_count -= 1;
+                }
+                else if current_char == '[' {
+                    loop_count += 1;
+                }
+            }
+        }
         else if c == ']' && cells[i] != 0 {
             let mut loop_count = 1;
             while loop_count > 0 {
